@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Container, Jumbotron, Card} from 'react-bootstrap';
-import AddGoal from "./AddGoal"
+import AddGoal from "./addGoal"
 
 const Goal = props => {
     const cardId = props.id;

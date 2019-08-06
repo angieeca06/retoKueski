@@ -1,7 +1,7 @@
 import React from 'react';
 import Login from './component/login'
 import Register from './component/Register';
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {HashRouter, Route, Switch} from "react-router-dom";
 import './App.css';
 import Home from './component/Home';
 import Goal from './component/Goal';
@@ -35,7 +35,7 @@ class App extends React.Component {
   render(){
     console.log(this.state.user)
     return(
-      <BrowserRouter basename="/">
+      <HashRouter basename="/">
          <div className="App">
            <Switch>
              <Route exact path="/" render={() => <Login />}/>
@@ -44,7 +44,7 @@ class App extends React.Component {
             <Route exact path="/Goal" render={() => <Goal/>}/>
            </Switch>
          </div>
-       </BrowserRouter>
+       </HashRouter>
     )
 
   }
