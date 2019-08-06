@@ -259,8 +259,8 @@ render() {
           Agregar meta
         </Button>
       </Form>
+    </Styles>
 
-                </Styles>
   )
 }
 }
