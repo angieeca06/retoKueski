@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import { Container, Jumbotron, Card} from 'react-bootstrap';
+import { Container, Jumbotron, Card, Button} from 'react-bootstrap';
 import AddGoal from "./addGoal"
 
 const Goal = props => {
     const cardId = props.id;
-    console.log("en el goal", props.id)
+    const arrSteps = props.arrSteps;
+
+    console.log("en el goal", arrSteps)
     const [goals, setGoals] = useState([]);
     const [info, setInfo] = useState([]);
 
@@ -37,7 +39,16 @@ const Goal = props => {
                     </Card.Body>
                 </Card>
                 <div>Tareas</div>
-                
+                {arrSteps.map(steps=>{
+                    console.log("steps",)
+                    return(
+                        <Card>
+                            <Card.Body>{steps}</Card.Body>
+                            <Button>Falta</Button>
+                            <Button>Hecho</Button>
+                        </Card>
+                    )
+                })}
             </Container>
         ) : (<div>hola</div>)
     )

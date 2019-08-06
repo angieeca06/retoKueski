@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import {Form, Button, Container, Card} from 'react-bootstrap';
 import styled from 'styled-components';
-
 import Goal from './Goal';
-
 
 const Styles = styled.div`
   form {
@@ -48,7 +46,6 @@ const Styles = styled.div`
 `
 class DisplayGoals extends Component{
 
-
 constructor() {
   super();
   this.state = {
@@ -56,13 +53,19 @@ constructor() {
     motive: '',
     date: '',
     _id: '',
-    tasks: []
+    tasks: [],
+    value : true,
+    arrSteps : [],
+    step : ""
   };
+
   this.handleChange = this.handleChange.bind(this);
   this.addTask = this.addTask.bind(this);
   this.deleteTask = this.deleteTask.bind(this);
   this.editTask = this.editTask.bind(this);
   this.fetchTasks = this.fetchTasks.bind(this);
+  this.addStep = this.addStep.bind(this);
+  this.setUserId = this.setUserId.bind(this)
 }
 
   handleChange(e) {
@@ -72,6 +75,13 @@ constructor() {
     });
   }
 
+  setUserId = () => {
+    const userId = JSON.parse(window.localStorage.getItem('uid'));
+    this.setState({
+      uid : userId
+    })
+  }
+
   addTask(e) {
     e.preventDefault();
     if (this.state._id) {
@@ -79,7 +89,10 @@ constructor() {
         method: 'PUT',
         body: JSON.stringify({
           title: this.state.title,
-          motive: this.state.motive
+          motive: this.state.motive,
+          date: new Date(),
+          uid : this.state.uid,
+          steps: this.state.arrSteps
         }),
         headers: {
           'Accept': 'application/json',
@@ -89,13 +102,19 @@ constructor() {
         .then(res => res.json())
         .then(data => {
           console.log("addTask", data)
-          this.setState({ _id: '', title: '', motive: '' });
+          this.setState({ title: '', motive: '' });
           this.fetchTasks();
         });
     } else {
       fetch('/api/goals', {
         method: 'POST',
-        body: JSON.stringify(this.state),
+        body: JSON.stringify({
+          title: this.state.title,
+          motive: this.state.motive,
+          date: new Date(),
+          uid : this.state.uid,
+          steps: this.state.arrSteps
+        }),
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
@@ -143,6 +162,7 @@ constructor() {
   }
 
   componentDidMount() {
+    this.setUserId();
     this.fetchTasks();
   }
 
@@ -162,11 +182,17 @@ fetchTasks() {
     });
 }
 
+addStep = () => {
+  this.state.arrSteps.push(this.state.step)
+  this.setState({arrSteps: this.state.arrSteps});
+  this.setState({step : ""});
+}
+
 render() {
-  console.log("estado de showing",this.state.id)
   if(this.state.showingGoal){
+    console.log("Arreglo de pasos", this.state.arrSteps)
     return (
-      <Goal id = {this.state.id}/>
+        <Goal id = {this.state.id} arrSteps = {this.state.arrSteps}/>
     )
   }else{
   return (
@@ -180,6 +206,11 @@ render() {
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Motivo de la meta</Form.Label>
           <Form.Control name="motive" onChange={this.handleChange} value={this.state.motive} type="text" placeholder="Ingresa el motivo de tu meta" />
+        </Form.Group>
+        <Form.Group  controlId="formBasicEmail">
+          <Form.Label>Tareas para completar tu meta</Form.Label>
+          <Form.Control name="step"  placeholder="Ingresa tus tareas" onChange={this.handleChange} type="text" value={this.state.step}/>
+          <Button onClick = {this.addStep}>Añadir</Button>
         </Form.Group>
         <Button variant="primary" type="submit">
           Agregar meta

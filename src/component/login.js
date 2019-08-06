@@ -98,7 +98,6 @@ const Login = props => {
         return response.json();
       })
       .then(response => {
-        console.log("sesion activa");
         localStorage.setItem("token", JSON.stringify(response));
         localStorage.setItem("uid", JSON.stringify(response.uid));
         // this.props.history.push('/Home');
