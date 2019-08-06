@@ -87,6 +87,7 @@ const Login = props => {
     console.log(email);
     console.log(password);
   };
+
   function login() {
     fetch("/api/user/login", {
       method: "POST",
@@ -99,6 +100,7 @@ const Login = props => {
       .then(response => {
         console.log("sesion activa");
         localStorage.setItem("token", JSON.stringify(response));
+        localStorage.setItem("uid", JSON.stringify(response.uid));
         // this.props.history.push('/Home');
       });
   }
