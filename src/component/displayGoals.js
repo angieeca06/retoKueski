@@ -104,7 +104,7 @@ class DisplayGoals extends Component {
   addTask(e) {
     e.preventDefault();
     if (this.state._id) {
-      fetch(`/api/goals/${this.state._id}`, {
+      fetch(`https://kueski.mariabp.dev/api/goals/${this.state._id}`, {
         method: "PUT",
         body: JSON.stringify({
           title: this.state.title,
@@ -121,7 +121,7 @@ class DisplayGoals extends Component {
           this.fetchTasks();
         });
     } else {
-      fetch("/api/goals", {
+      fetch("https://kueski.mariabp.dev/api/goals", {
         method: "POST",
         body: JSON.stringify(this.state),
         headers: {
@@ -139,7 +139,7 @@ class DisplayGoals extends Component {
   }
 
   deleteTask(id) {
-    fetch(`/api/goals/${id}`, {
+    fetch(`https://kueski.mariabp.dev/api/goals/${id}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",
@@ -153,7 +153,7 @@ class DisplayGoals extends Component {
   }
 
   editTask(id) {
-    fetch(`/api/goals/${id}`)
+    fetch(`https://kueski.mariabp.dev/api/goals/${id}`)
       .then(res => res.json())
       .then(data => {
         this.setState({

@@ -12,7 +12,7 @@ const Goal = props => {
   }, []);
 
   const fetchTasks = () => {
-    fetch("/api/goals")
+    fetch("https://kueski.mariabp.dev/api/goals")
       .then(res => res.json())
       .then(data => {
         setGoals(data);

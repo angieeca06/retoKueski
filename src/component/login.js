@@ -86,7 +86,7 @@ const Login = props => {
   };
 
   function login() {
-    fetch("/api/user/login", {
+    fetch("https://kueski.mariabp.dev/api/user/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password })

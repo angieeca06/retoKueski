@@ -92,7 +92,7 @@ const Register = props => {
   };
 
   function register() {
-    fetch("/api/user/register", {
+    fetch("https://kueski.mariabp.dev/api/user/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password })
