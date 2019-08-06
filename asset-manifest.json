@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/retoKueski/static/css/main.4db0691d.chunk.css",
-    "main.js": "/retoKueski/static/js/main.389a88da.chunk.js",
-    "main.js.map": "/retoKueski/static/js/main.389a88da.chunk.js.map",
+    "main.js": "/retoKueski/static/js/main.3bd0bdb6.chunk.js",
+    "main.js.map": "/retoKueski/static/js/main.3bd0bdb6.chunk.js.map",
     "runtime~main.js": "/retoKueski/static/js/runtime~main.e8793760.js",
     "runtime~main.js.map": "/retoKueski/static/js/runtime~main.e8793760.js.map",
-    "static/js/2.1d9510e0.chunk.js": "/retoKueski/static/js/2.1d9510e0.chunk.js",
-    "static/js/2.1d9510e0.chunk.js.map": "/retoKueski/static/js/2.1d9510e0.chunk.js.map",
+    "static/js/2.8602a42f.chunk.js": "/retoKueski/static/js/2.8602a42f.chunk.js",
+    "static/js/2.8602a42f.chunk.js.map": "/retoKueski/static/js/2.8602a42f.chunk.js.map",
     "index.html": "/retoKueski/index.html",
-    "precache-manifest.beb74997232fe03a285d7d9f60452230.js": "/retoKueski/precache-manifest.beb74997232fe03a285d7d9f60452230.js",
+    "precache-manifest.4e4ef70fa675c33344b165ba18088d7c.js": "/retoKueski/precache-manifest.4e4ef70fa675c33344b165ba18088d7c.js",
     "service-worker.js": "/retoKueski/service-worker.js",
     "static/css/main.4db0691d.chunk.css.map": "/retoKueski/static/css/main.4db0691d.chunk.css.map"
   }
