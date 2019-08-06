@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import { Container, Jumbotron, Button } from 'react-bootstrap';
+import { Container, Jumbotron, Card} from 'react-bootstrap';
+import AddGoal from "./AddGoal"
 
 const Goal = props => {
     const cardId = props.id;
@@ -9,35 +10,37 @@ const Goal = props => {
 
     useEffect(()=>{
         fetchTasks()
-    },[info]);
+    },[]);
 
         const fetchTasks = () => {
             fetch('/api/goals')
             .then(res => res.json())
             .then(data => {
                 setGoals(data);
-                data.find((cardId)=>{
-                    info.push(cardId);
-                    setInfo(info)
-                    return cardId
-                })
-                return info
+                const foundCard = data.find((card)=> {
+                    return card._id === cardId;
+                });
+                setInfo(foundCard);
+                return;
             });
         }
-        
-    // console.log(info)
-    if(info !== []){
-        console.log(info[0])
-        return(
+
+    return (
+        info.motive ? (
             <Container>
-            {/* <Button onClick = {fetchTasks}>Boton</Button> */}
-            <Jumbotron>
-                <h1>Hello, world!</h1>
-                {/* <p>{info.motive}</p> */}
-            </Jumbotron>
-        </Container>
+                <Jumbotron>
+                    <p>{info.motive}</p>
+                </Jumbotron>
+                <Card>
+                    <Card.Body>
+                        {<AddGoal />}
+                    </Card.Body>
+                </Card>
+                <div>Tareas</div>
+
+            </Container>
+        ) : (<div>hola</div>)
     )
-    }
 }
 
 export default Goal;
