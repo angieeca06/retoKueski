@@ -176,7 +176,7 @@ class DisplayGoals extends Component {
   };
 
   fetchTasks() {
-    fetch("/api/goals")
+    fetch("https://kueski.mariabp.dev/api/goals")
       .then(res => res.json())
       .then(data => {
         this.setState({ tasks: data });
