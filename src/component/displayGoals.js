@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Form, Button, Container, Card} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 
 import Goal from './Goal';
@@ -171,6 +170,7 @@ render() {
     )
   }else{
   return (
+      <Styles>
     <Container>
       <Form onSubmit={this.addTask}>
         <Form.Group  controlId="formBasicEmail">
@@ -195,9 +195,7 @@ render() {
                           <Card.Text>
                             {task.motive}
                           </Card.Text>
-                          {/* <Link to="/Goal"> */}
                             <Button onClick={() => this.showGoal(task._id)}>Ver más</Button>
-                          {/* </Link> */}
                           <Button onClick={() => this.deleteTask(task._id)}>Eliminar</Button>
                           <Button onClick={() => this.editTask(task._id)} >Editar</Button>
                         </Card.Body>
@@ -206,12 +204,9 @@ render() {
                     )
                   })
                 }
-
-
                 </Container>
-
-                </Styles>
     </Container>
+                </Styles>
   )
 }
 }
