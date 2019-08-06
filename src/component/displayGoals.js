@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import {Form, Button, Container, Card} from 'react-bootstrap';
+import {Form, Button,Card} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-
+import { IoIosAddCircle, IoIosAdd, IoMdCreate, IoMdTrash } from "react-icons/io";
+import Slider from "react-slick";
 import Goal from './Goal';
-
 
 const Styles = styled.div`
   form {
@@ -11,6 +12,7 @@ const Styles = styled.div`
   box-shadow: 7px 8px 7px rgba(3, 3, 3, 0.4);
   margin: 2rem 1rem 1rem 1rem;
   padding: 1rem;
+  display:none;
 
   input {
     border-left: none;
@@ -44,6 +46,36 @@ const Styles = styled.div`
     display: block;
     margin: auto;
   }
+
+}
+
+
+.cardq{
+  display:flex;
+  margin:1rem;
+
+
+}
+
+.ingresarCard {
+  border: none;
+  margin-left:65%;
+  font-size: 1rem;
+  color: white;
+  background-color: #A0D85B;
+  padding: 10px;
+  text-align: center;
+  border-radius: 2rem;
+}
+.vermas {
+  border: none;
+  color: #A0D85B;
+  font-size: 2rem;
+  background-color:  white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 2rem;
+}
 `
 class DisplayGoals extends Component{
 
@@ -146,7 +178,7 @@ constructor() {
   }
 
 showGoal = (cardId) =>{
-  this.setState({ 
+  this.setState({
     showingGoal : !this.state.showingGoal,
     id : cardId
    })
@@ -169,9 +201,52 @@ render() {
     )
   }else{
   return (
-      <Styles>
-    <Container>
-      <Form onSubmit={this.addTask}>
+    <Styles>
+    <div className ="cardq">
+
+
+           {this.state.tasks.map(task => {
+              return (
+
+              <Card  key={task._id}>
+
+                  <Card.Img  variant="top" src="https://i.imgur.com/5OpceQ1.jpg" />
+                  <Card.Body>
+
+                    <Card.Title>{task.title}</Card.Title>
+                    <Card.Text>
+                      {task.motive}
+                    </Card.Text>
+                    {/* <Link to="/Goal"> */}
+                      <Button className ="vermas" onClick={() => this.showGoal(task._id)}><IoIosAdd/></Button>
+                    {/* </Link> */}
+                    <Button className ="vermas" onClick={() => this.deleteTask(task._id)}><IoMdTrash/></Button>
+                    <Button className ="vermas"onClick={() => this.editTask(task._id)} ><IoMdCreate/></Button>
+
+                  </Card.Body>
+
+                </Card>
+
+
+
+
+              )
+            })
+          }
+
+          </div>
+
+
+
+<Button className ="ingresarCard" variant="primary" type="submit" onClick={()=>{
+  document.querySelector('.form').style.display="block"
+}}>
+<IoIosAddCircle/>
+</Button>
+
+
+
+      <Form className ="form" onSubmit={this.addTask}>
         <Form.Group  controlId="formBasicEmail">
           <Form.Label>Nombre de la meta</Form.Label>
           <Form.Control name="title"  placeholder="Ingresa tu meta" onChange={this.handleChange} type="text" value={this.state.title}/>
@@ -184,27 +259,7 @@ render() {
           Agregar meta
         </Button>
       </Form>
-          <Container className="col s7">
-                 {this.state.tasks.map(task => {
-                    return (
-                      <Card key={task._id}>
-                        <Card.Img variant="top" src="https://i.imgur.com/5OpceQ1.jpg" />
-                        <Card.Body>
-                          <Card.Title>{task.title}</Card.Title>
-                          <Card.Text>
-                            {task.motive}
-                          </Card.Text>
-                            <Button onClick={() => this.showGoal(task._id)}>Ver más</Button>
-                          <Button onClick={() => this.deleteTask(task._id)}>Eliminar</Button>
-                          <Button onClick={() => this.editTask(task._id)} >Editar</Button>
-                        </Card.Body>
-                      </Card>
 
-                    )
-                  })
-                }
-                </Container>
-    </Container>
                 </Styles>
   )
 }
