@@ -1,24 +1,7 @@
 import React, { Component } from 'react';
-import {Form, Button, Container, Card} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
-
-class DisplayGoals extends Component{
-
-constructor() {
-  super();
-  this.state = {
-    title: '',
-    motive: '',
-    date: '',
-    _id: '',
-    tasks: []
-  };
-  this.handleChange = this.handleChange.bind(this);
-  this.addTask = this.addTask.bind(this);
-  this.deleteTask = this.deleteTask.bind(this);
-  this.editTask = this.editTask.bind(this);
-  this.fetchTasks = this.fetchTasks.bind(this);
-}
+import { Form, Button, Container, CardDeck, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const Styles = styled.div`
   form {
@@ -55,11 +38,9 @@ const Styles = styled.div`
     width: 60%;
   }
 
-  .goalsContainer {
-    display: block; 
-    margin: auto;
+  .card-deck {
+    background-color: blue;
   }
-
 `
 
 class DisplayGoals extends Component {
@@ -188,31 +169,34 @@ class DisplayGoals extends Component {
             <Button className="addGoalBtn" type="submit">
               Agregar meta
         </Button>
-      </Form>
-          <Container className="col s7">
-                { this.state.tasks.map(task => {
-                    return (
-                      <Card key={task._id}>
-                        <Card.Img variant="top" src="https://i.imgur.com/5OpceQ1.jpg" />
-                        <Card.Body>
-                          <Card.Title>{task.title}</Card.Title>
-                          <Card.Text>
-                            {task.motive}
-                          </Card.Text>
-                          <Link to="/Goal">
-                            <Button>Ver más</Button>
-                          </Link>
-                          <Button onClick={() => this.deleteTask(task._id)}>Eliminar</Button>
-                          <Button onClick={() => this.editTask(task._id)} >Editar</Button>
-                        </Card.Body>
-                      </Card>
-                    )
-                  })
-                }
-                </Container>
-    </Container>
-  )
-}
+          </Form>
+          
+            <CardDeck>
+              {this.state.tasks.map(task => {
+                return (
+                  <Card key={task._id}>
+                    <Card.Img variant="top" src="https://i.imgur.com/5OpceQ1.jpg" />
+                    <Card.Body>
+                      <Card.Title>{task.title}</Card.Title>
+                      <Card.Text>
+                        {task.motive}
+                      </Card.Text>
+                      <Link to="/Goal">
+                        <Button>Ver más</Button>
+                      </Link>
+                      <Button onClick={() => this.deleteTask(task._id)}>Eliminar</Button>
+                      <Button onClick={() => this.editTask(task._id)} >Editar</Button>
+                    </Card.Body>
+                  </Card>
+                )
+              })
+              }
+            </CardDeck>
+          
+        </Styles>
+      </Container>
+    )
+  }
 
 }
 
