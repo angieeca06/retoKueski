@@ -201,6 +201,7 @@ render() {
     )
   }else{
   return (
+
     <Styles>
     <div className ="cardq">
 
@@ -247,6 +248,7 @@ render() {
 
 
       <Form className ="form" onSubmit={this.addTask}>
+
         <Form.Group  controlId="formBasicEmail">
           <Form.Label>Nombre de la meta</Form.Label>
           <Form.Control name="title"  placeholder="Ingresa tu meta" onChange={this.handleChange} type="text" value={this.state.title}/>
@@ -260,9 +262,7 @@ render() {
         </Button>
       </Form>
 
-
-
-    </Styles>
+                </Styles>
   )
 }
 }
