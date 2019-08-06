@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/retoKueski/static/css/main.4db0691d.chunk.css",
-    "main.js": "/retoKueski/static/js/main.3bd0bdb6.chunk.js",
-    "main.js.map": "/retoKueski/static/js/main.3bd0bdb6.chunk.js.map",
+    "main.css": "/retoKueski/static/css/main.d34f7c0b.chunk.css",
+    "main.js": "/retoKueski/static/js/main.6afe7fd7.chunk.js",
+    "main.js.map": "/retoKueski/static/js/main.6afe7fd7.chunk.js.map",
     "runtime~main.js": "/retoKueski/static/js/runtime~main.e8793760.js",
     "runtime~main.js.map": "/retoKueski/static/js/runtime~main.e8793760.js.map",
-    "static/js/2.8602a42f.chunk.js": "/retoKueski/static/js/2.8602a42f.chunk.js",
-    "static/js/2.8602a42f.chunk.js.map": "/retoKueski/static/js/2.8602a42f.chunk.js.map",
+    "static/js/2.08b74f54.chunk.js": "/retoKueski/static/js/2.08b74f54.chunk.js",
+    "static/js/2.08b74f54.chunk.js.map": "/retoKueski/static/js/2.08b74f54.chunk.js.map",
     "index.html": "/retoKueski/index.html",
-    "precache-manifest.4e4ef70fa675c33344b165ba18088d7c.js": "/retoKueski/precache-manifest.4e4ef70fa675c33344b165ba18088d7c.js",
+    "precache-manifest.dd347e7b386cbf1390d8c7c0bd38a239.js": "/retoKueski/precache-manifest.dd347e7b386cbf1390d8c7c0bd38a239.js",
     "service-worker.js": "/retoKueski/service-worker.js",
-    "static/css/main.4db0691d.chunk.css.map": "/retoKueski/static/css/main.4db0691d.chunk.css.map"
+    "static/css/main.d34f7c0b.chunk.css.map": "/retoKueski/static/css/main.d34f7c0b.chunk.css.map",
+    "static/media/dreamcatcher.png": "/retoKueski/static/media/dreamcatcher.5ac03833.png"
   }
 }
