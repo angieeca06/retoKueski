@@ -201,6 +201,10 @@ render() {
     )
   }else{
   return (
+<<<<<<< HEAD
+=======
+
+>>>>>>> f145e130e73f49a3aff0cdf5d031191149dfc474
     <Styles>
     <div className ="cardq">
 
@@ -247,6 +251,10 @@ render() {
 
 
       <Form className ="form" onSubmit={this.addTask}>
+<<<<<<< HEAD
+=======
+
+>>>>>>> f145e130e73f49a3aff0cdf5d031191149dfc474
         <Form.Group  controlId="formBasicEmail">
           <Form.Label>Nombre de la meta</Form.Label>
           <Form.Control name="title"  placeholder="Ingresa tu meta" onChange={this.handleChange} type="text" value={this.state.title}/>
@@ -260,9 +268,13 @@ render() {
         </Button>
       </Form>
 
+<<<<<<< HEAD
 
 
     </Styles>
+=======
+                </Styles>
+>>>>>>> f145e130e73f49a3aff0cdf5d031191149dfc474
   )
 }
 }
