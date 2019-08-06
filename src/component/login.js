@@ -61,19 +61,18 @@ const Styles = styled.div`
     margin-top: 8rem;
   }
 
-.registro {
-  border: none;
-  font-size: 1.2rem;
-  color: white;
-  background-color: #F72525;
-  padding: 20px;
-  text-align: center;
-  display: block;
-  margin: auto;
-  border-radius: 3rem;
-}
-`
-
+  .registro {
+    border: none;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #f72525;
+    padding: 20px;
+    text-align: center;
+    display: block;
+    margin: auto;
+    border-radius: 3rem;
+  }
+`;
 const Login = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -84,8 +83,6 @@ const Login = props => {
     if (event.target.name === "password") {
       setPassword(event.target.value);
     }
-    console.log(email);
-    console.log(password);
   };
 
   function login() {
@@ -98,10 +95,8 @@ const Login = props => {
         return response.json();
       })
       .then(response => {
-        console.log("sesion activa");
         localStorage.setItem("token", JSON.stringify(response));
         localStorage.setItem("uid", JSON.stringify(response.uid));
-        // this.props.history.push('/Home');
       });
   }
   return (
@@ -137,9 +132,7 @@ const Login = props => {
             </Button>
           </Link>
         </Form>
-
         <p className="visita">¿Primera vez que nos visitas?</p>
-
         <Button className="registro">
           <Link to="/Register">Crea una cuenta</Link>
         </Button>

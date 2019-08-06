@@ -1,100 +1,98 @@
-import React, { Component } from 'react';
-import {Form, Button,Card} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
-import styled from 'styled-components';
-import { IoIosAddCircle, IoIosAdd, IoMdCreate, IoMdTrash } from "react-icons/io";
-import Slider from "react-slick";
-import Goal from './Goal';
+import React, { Component } from "react";
+import { Form, Button, Card } from "react-bootstrap";
+import styled from "styled-components";
+import {
+  IoIosAddCircle,
+  IoIosAdd,
+  IoMdCreate,
+  IoMdTrash
+} from "react-icons/io";
+import Goal from "./Goal";
 
 const Styles = styled.div`
   form {
-  background-color: #ffffff;
-  box-shadow: 7px 8px 7px rgba(3, 3, 3, 0.4);
-  margin: 2rem 1rem 1rem 1rem;
-  padding: 1rem;
-  display:none;
+    background-color: #ffffff;
+    box-shadow: 7px 8px 7px rgba(3, 3, 3, 0.4);
+    margin: 2rem 1rem 1rem 1rem;
+    padding: 1rem;
+    display: none;
 
-  input {
-    border-left: none;
-    border-right: none;
-    border-top: none;
-    border-bottom-width: 1px;
-    border-color: rgba(3, 3, 3, 0.4);
+    input {
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      border-bottom-width: 1px;
+      border-color: rgba(3, 3, 3, 0.4);
 
-    ::placeholder {
-      color: rgba(3, 3, 3, 0.4);
+      ::placeholder {
+        color: rgba(3, 3, 3, 0.4);
+      }
+    }
+
+    .motiveTextArea {
+      margin-bottom: 3rem;
+    }
+
+    .addGoalBtn {
+      display: block;
+      margin: auto;
+      padding: 1rem;
+      font-size: larger;
+      background-color: #083d77;
+      color: white;
+      border-radius: 3rem;
+      border: none;
+      width: 60%;
+    }
+
+    .goalsContainer {
+      display: block;
+      margin: auto;
     }
   }
 
-  .motiveTextArea {
-    margin-bottom: 3rem;
+  .cardq {
+    display: flex;
+    margin: 1rem;
   }
 
-  .addGoalBtn {
-    display: block;
-    margin: auto;
-    padding: 1rem;
-    font-size: larger;
-    background-color: #083d77;
-    color: white;
-    border-radius: 3rem;
+  .ingresarCard {
     border: none;
-    width: 60%;
+    margin-left: 65%;
+    font-size: 1rem;
+    color: white;
+    background-color: #a0d85b;
+    padding: 10px;
+    text-align: center;
+    border-radius: 2rem;
   }
 
-  .goalsContainer {
-    display: block;
-    margin: auto;
+  .vermas {
+    border: none;
+    color: #a0d85b;
+    font-size: 2rem;
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 2rem;
   }
-
-}
-
-
-.cardq{
-  display:flex;
-  margin:1rem;
-
-
-}
-
-.ingresarCard {
-  border: none;
-  margin-left:65%;
-  font-size: 1rem;
-  color: white;
-  background-color: #A0D85B;
-  padding: 10px;
-  text-align: center;
-  border-radius: 2rem;
-}
-.vermas {
-  border: none;
-  color: #A0D85B;
-  font-size: 2rem;
-  background-color:  white;
-  padding: 10px;
-  text-align: center;
-  border-radius: 2rem;
-}
-`
-class DisplayGoals extends Component{
-
-
-constructor() {
-  super();
-  this.state = {
-    title: '',
-    motive: '',
-    date: '',
-    _id: '',
-    tasks: []
-  };
-  this.handleChange = this.handleChange.bind(this);
-  this.addTask = this.addTask.bind(this);
-  this.deleteTask = this.deleteTask.bind(this);
-  this.editTask = this.editTask.bind(this);
-  this.fetchTasks = this.fetchTasks.bind(this);
-}
+`;
+class DisplayGoals extends Component {
+  constructor() {
+    super();
+    this.state = {
+      title: "",
+      motive: "",
+      date: "",
+      _id: "",
+      tasks: []
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.addTask = this.addTask.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
+    this.editTask = this.editTask.bind(this);
+    this.fetchTasks = this.fetchTasks.bind(this);
+  }
 
   handleChange(e) {
     const { name, value } = e.target;
@@ -107,64 +105,57 @@ constructor() {
     e.preventDefault();
     if (this.state._id) {
       fetch(`/api/goals/${this.state._id}`, {
-        method: 'PUT',
+        method: "PUT",
         body: JSON.stringify({
           title: this.state.title,
           motive: this.state.motive
         }),
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          Accept: "application/json",
+          "Content-Type": "application/json"
         }
       })
         .then(res => res.json())
         .then(data => {
-          console.log("addTask", data)
-          this.setState({ _id: '', title: '', motive: '' });
+          this.setState({ _id: "", title: "", motive: "" });
           this.fetchTasks();
         });
     } else {
-      fetch('/api/goals', {
-        method: 'POST',
+      fetch("/api/goals", {
+        method: "POST",
         body: JSON.stringify(this.state),
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          Accept: "application/json",
+          "Content-Type": "application/json"
         }
       })
         .then(res => res.json())
         .then(data => {
-          console.log(data);
-          this.setState({ title: '', motive: '' });
+          this.setState({ title: "", motive: "" });
           this.fetchTasks();
         })
         .catch(err => console.error(err));
     }
-
   }
 
   deleteTask(id) {
-    console.log(id)
     fetch(`/api/goals/${id}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json"
       }
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         this.fetchTasks();
-      })
-    // .catch(err)
+      });
   }
 
   editTask(id) {
     fetch(`/api/goals/${id}`)
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         this.setState({
           title: data.title,
           motive: data.motive,
@@ -177,63 +168,60 @@ constructor() {
     this.fetchTasks();
   }
 
-showGoal = (cardId) =>{
-  this.setState({
-    showingGoal : !this.state.showingGoal,
-    id : cardId
-   })
-}
-
-fetchTasks() {
-  fetch('/api/goals')
-    .then(res => res.json())
-    .then(data => {
-      this.setState({tasks: data});
-      console.log(this.state.tasks);
+  showGoal = cardId => {
+    this.setState({
+      showingGoal: !this.state.showingGoal,
+      id: cardId
     });
-}
+  };
 
-render() {
-  console.log("estado de showing",this.state.id)
-  if(this.state.showingGoal){
-    return (
-      <Goal id = {this.state.id}/>
-    )
-  }else{
-  return (
-    <Styles>
-    <div className ="cardq">
+  fetchTasks() {
+    fetch("/api/goals")
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ tasks: data });
+      });
+  }
 
-
-           {this.state.tasks.map(task => {
+  render() {
+    if (this.state.showingGoal) {
+      return <Goal id={this.state.id} />;
+    } else {
+      return (
+        <Styles>
+          <div className="cardq">
+            {this.state.tasks.map(task => {
               return (
-
-              <Card  key={task._id}>
-
-                  <Card.Img  variant="top" src="https://i.imgur.com/5OpceQ1.jpg" />
+                <Card key={task._id}>
+                  <Card.Img
+                    variant="top"
+                    src="https://i.imgur.com/5OpceQ1.jpg"
+                  />
                   <Card.Body>
-
                     <Card.Title>{task.title}</Card.Title>
-                    <Card.Text>
-                      {task.motive}
-                    </Card.Text>
-                    {/* <Link to="/Goal"> */}
-                      <Button className ="vermas" onClick={() => this.showGoal(task._id)}><IoIosAdd/></Button>
-                    {/* </Link> */}
-                    <Button className ="vermas" onClick={() => this.deleteTask(task._id)}><IoMdTrash/></Button>
-                    <Button className ="vermas"onClick={() => this.editTask(task._id)} ><IoMdCreate/></Button>
-
+                    <Card.Text>{task.motive}</Card.Text>
+                    <Button
+                      className="vermas"
+                      onClick={() => this.showGoal(task._id)}
+                    >
+                      <IoIosAdd />
+                    </Button>
+                    <Button
+                      className="vermas"
+                      onClick={() => this.deleteTask(task._id)}
+                    >
+                      <IoMdTrash />
+                    </Button>
+                    <Button
+                      className="vermas"
+                      onClick={() => this.editTask(task._id)}
+                    >
+                      <IoMdCreate />
+                    </Button>
                   </Card.Body>
-
                 </Card>
-
-
-
-
-              )
-            })
-          }
-
+              );
+            })}
           </div>
 
 
@@ -264,6 +252,7 @@ render() {
   )
 }
 }
+
 
 }
 
