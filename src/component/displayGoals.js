@@ -224,45 +224,36 @@ class DisplayGoals extends Component {
             })}
           </div>
 
-          <Button
-            className="ingresarCard"
-            variant="primary"
-            type="submit"
-            onClick={() => {
-              document.querySelector(".form").style.display = "block";
-            }}
-          >
-            <IoIosAddCircle />
-          </Button>
-          <Form className="form" onSubmit={this.addTask}>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Nombre de la meta</Form.Label>
-              <Form.Control
-                name="title"
-                placeholder="Ingresa tu meta"
-                onChange={this.handleChange}
-                type="text"
-                value={this.state.title}
-              />
-            </Form.Group>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Motivo de la meta</Form.Label>
-              <Form.Control
-                name="motive"
-                onChange={this.handleChange}
-                value={this.state.motive}
-                type="text"
-                placeholder="Ingresa el motivo de tu meta"
-              />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-              Agregar meta
-            </Button>
-          </Form>
-        </Styles>
-      );
-    }
-  }
+
+
+<Button className ="ingresarCard" variant="primary" type="submit" onClick={()=>{
+  document.querySelector('.form').style.display="block"
+}}>
+<IoIosAddCircle/>
+</Button>
+
+
+
+      <Form className ="form" onSubmit={this.addTask}>
+        <Form.Group  controlId="formBasicEmail">
+          <Form.Label>Nombre de la meta</Form.Label>
+          <Form.Control name="title"  placeholder="Ingresa tu meta" onChange={this.handleChange} type="text" value={this.state.title}/>
+        </Form.Group>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Motivo de la meta</Form.Label>
+          <Form.Control name="motive" onChange={this.handleChange} value={this.state.motive} type="text" placeholder="Ingresa el motivo de tu meta" />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Agregar meta
+        </Button>
+      </Form>
+    </Styles>
+
+  )
+}
+}
+
+
 }
 
 export default DisplayGoals;
